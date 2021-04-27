@@ -23,7 +23,7 @@ const App = () => {
       })
       .then((data) => {
         console.log(data);
-        setPlanets(data.results);
+        setPlanets((el) => el.concat(data.results));
       })
       .catch((error) => {
         console.error(error.message);
