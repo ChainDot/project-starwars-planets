@@ -46,7 +46,7 @@ const App = () => {
       </div>
       {end === null ? (
         <h3 className="bg-dark text-white py-5 text-center">
-          This is all the Planet in Star Wars
+          These are all the Planets you gonna find in the Star Wars Universe
         </h3>
       ) : (
         <button
