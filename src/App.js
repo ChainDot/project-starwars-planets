@@ -7,6 +7,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [nextPage, setNextPage] = useState(1);
+  const [end, setEnd] = useState([]);
 
   const hangleChangePageClick = () => {
     setNextPage(nextPage + 1);
@@ -24,6 +25,7 @@ const App = () => {
       .then((data) => {
         console.log(data);
         setPlanets((el) => el.concat(data.results));
+        setEnd(data.next);
       })
       .catch((error) => {
         console.error(error.message);
@@ -42,13 +44,19 @@ const App = () => {
         {error && <p>{error}</p>}
         <Card planets={planets} />
       </div>
-      <button
-        type="button"
-        class="btn btn-primary btn-sm"
-        onClick={hangleChangePageClick}
-      >
-        Next
-      </button>
+      {end === null ? (
+        <h3 className="bg-dark text-white py-5 text-center">
+          This is all the Planet in Star Wars
+        </h3>
+      ) : (
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          onClick={hangleChangePageClick}
+        >
+          Next
+        </button>
+      )}
     </section>
   );
 };
